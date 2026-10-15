@@ -1,0 +1,19 @@
+# 全局配置：HITL 开关、top_k、模型参数、MCP 熔断阈值
+
+hitl:
+  # 是否开启人工复核（Human-in-the-loop）
+  enabled: true
+
+retrieval:
+  top_k: 5
+
+llm:
+  # 通义千问；可用环境变量 LLM_MODEL 覆盖
+  model: "qwen3.7-plus"
+  temperature: 0.2
+  max_tokens: 4096
+
+mcp:
+  # 元典 MCP 熔断阈值
+  failure_threshold: 3
+  recovery_timeout: 60

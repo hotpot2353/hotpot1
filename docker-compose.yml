@@ -1,0 +1,11 @@
+# Qdrant 容器编排
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: legal-criminal-qdrant
+    ports:
+      # 只绑定回环地址：本地开发无认证，绑定 0.0.0.0 会把无鉴权的
+      # Qdrant 暴露到局域网。gRPC 6334 端口本项目不用，不再映射。
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - ./data/qdrant:/qdrant/storage

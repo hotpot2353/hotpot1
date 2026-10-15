@@ -1,0 +1,26 @@
+# RAG 专属配置：collection 名、embedding 模型、检索参数
+
+collection:
+  laws: laws
+  cases: cases
+
+embedding:
+  # 阿里云百炼 text-embedding-v4；可用环境变量 EMBEDDING_MODEL 覆盖
+  # 每行最长 8192 token，单次请求最多 10 条
+  model: "text-embedding-v4"
+  dimension: 1024
+
+retrieval:
+  top_k: 5
+  # 向量 + BM25 混合检索权重
+  vector_weight: 0.7
+  bm25_weight: 0.3
+  # 交叉编码器重排：DashScope 原生接口，OpenAI 兼容模式不提供
+  # qwen3-rerank 实测优于 gte-rerank-v2（评测集 14/14 vs 12/14，MRR 0.952 vs 0.857），
+  # 且单价更低（0.5 vs 0.8 元/百万 token）
+  rerank: true
+  rerank_model: "qwen3-rerank"
+
+chunking:
+  chunk_size: 500
+  chunk_overlap: 50

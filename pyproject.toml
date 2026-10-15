@@ -1,0 +1,47 @@
+# 项目依赖
+[project]
+name = "legal-criminal-agent"
+version = "0.1.0"
+description = "刑事法律智能体：LangGraph 编排 + RAG + 工具调用 + HITL"
+requires-python = ">=3.12"
+dependencies = [
+    # 基础设施：配置 / 日志
+    "python-dotenv==1.2.2",
+    "PyYAML==6.0.3",
+
+    # 附件解析：PDF / DOCX / TXT
+    "pypdf==4.2.0",
+    "python-docx==1.2.0",
+
+    # LLM：通义千问
+    "dashscope==1.27.5",
+    "langchain-openai==1.6.2",
+
+    # RAG：向量库 / 切分 / 混合检索
+    "qdrant-client==1.19.1",
+    "langchain-text-splitters==1.1.2",
+    "rank-bm25==0.2.2",
+    "numpy==1.26.4",
+
+    # Agent / Graph 编排
+    "langchain==1.4.1",
+    "langchain-core==1.6.3",
+    "langchain-classic==1.0.8",
+    "langchain-community==0.4.2",
+    "langgraph==1.2.11",
+    "langgraph-checkpoint==4.2.0",
+
+    # 元典 MCP：直接使用原生 mcp SDK（streamable HTTP），不引 langchain-mcp-adapters
+    # （adapters 0.3.2 要求 mcp<2.0，与 mcp 2.x 不兼容；封装见 src/tools/mcp_yuandian.py）
+    "mcp==2.2.0",
+
+    # 前端
+    "streamlit==1.64.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["src*"]

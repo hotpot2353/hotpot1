@@ -1,0 +1,32 @@
+# 日志配置
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  standard:
+    format: "%(asctime)s | %(levelname)s | %(name)s | %(filename)s:%(lineno)d | %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: standard
+    filename: logs/app.log
+    maxBytes: 10485760
+    backupCount: 5
+    encoding: utf-8
+
+# root 保持 INFO：第三方库（langchain / httpx / qdrant 等）的 DEBUG 不进文件，避免刷屏
+root:
+  level: INFO
+  handlers: [console, file]
+
+# 项目自己的日志开 DEBUG：控制台只显示 INFO，文件里能看到 DEBUG 细节
+loggers:
+  src:
+    level: DEBUG
+    propagate: true

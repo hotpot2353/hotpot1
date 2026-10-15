@@ -1,0 +1,25 @@
+# 环境变量（含 API Key，切勿提交）
+.env
+
+# 数据与持久化
+data/qdrant/
+data/processed/
+data/raws/
+data/cases/
+
+# 日志
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# IDE / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
